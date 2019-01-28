@@ -4,7 +4,19 @@ plugins {
 
 group 'org.cwld'
 // Use build number from jenkins
-version "0.0.1-$System.env.BUILD_NUMBER"
+version "0.1.0-$System.env.BUILD_NUMBER"
+
+// Retrieves the git commit hash from the local repository
+// Adapted from https://stackoverflow.com/questions/28498688/gradle-script-to-autoversion-and-include-the-commit-hash-in-android
+// By user 'Paul' (https://stackoverflow.com/users/44636/paul) on Jan 27 2016
+def getGitHash = { ->
+    def stdout = new ByteArrayOutputStream()
+    exec {
+        commandLine 'git', 'rev-parse', '--short', 'HEAD'
+        standardOutput = stdout
+    }
+    return stdout.toString().trim()
+}
 
 sourceCompatibility = 1.8
 
@@ -23,12 +35,17 @@ dependencies {
     compile 'com.jcabi:jcabi-manifests:1.1'
     compile 'org.slf4j:slf4j-api:1.7.25'
     compile 'org.slf4j:slf4j-simple:1.7.25'
+    // Spark is used to implement the HTTP API
+    compile 'com.sparkjava:spark-core:2.7.2'
+    // Gson is used for json -> string conversion
+    compile 'com.google.code.gson:gson:2.8.5'
 }
 
 jar {
     manifest {
         attributes 'Main-Class': 'org.cwld.pett.PettMain'
         attributes 'Application-Version': version
+        attributes 'Commit-Hash': getGitHash()
     }
     // Package dependent libraries into jar
     from {
