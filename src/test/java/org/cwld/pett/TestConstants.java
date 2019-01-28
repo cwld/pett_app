@@ -36,6 +36,8 @@ public class TestConstants {
     public static final String METADATA_VERSION_ATTR = "version";
     public static final String METADATA_DESC_ATTR = "description";
     public static final String METADATA_COMMIT_ATTR = "commit";
+    public static final String HEALTH_PATH = "health";
+    public static final String HEALTH_STATUS_ATTR = "status";
 
     /**
      * Gets a string response that matches the expected return from the metadata HTTP request
@@ -54,5 +56,19 @@ public class TestConstants {
         metaDataRoot.put(METADATA_ROOT_ATTR, metaDataArray);
 
         return gson.toJson(metaDataRoot);
+    }
+
+    /**
+     * Gets a string response that matches the expected return from the health HTTP request
+     * given the test data
+     */
+    public final static String getExpectedHealthResponse() {
+        Gson gson = new Gson();
+        Map<String, Object> healthRoot = new HashMap<>();
+
+        /* Always expect it to be healthy during the tests */
+        healthRoot.put(HEALTH_STATUS_ATTR, ServerHealth.HealthStatus.PASS);
+
+        return gson.toJson(healthRoot);
     }
 }

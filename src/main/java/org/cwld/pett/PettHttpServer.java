@@ -1,6 +1,7 @@
 package org.cwld.pett;
 
 import com.google.gson.Gson;
+import org.eclipse.jetty.server.Server;
 import spark.Request;
 import spark.Response;
 import spark.Route;
@@ -33,10 +34,16 @@ public class PettHttpServer implements Runnable {
     private static final String METADATA_COMMIT_ATTR = "commit";
 
     /**
+     * Attribute strings for the health handler
+     */
+    private static final String HEALTH_STATUS_ATTR = "status";
+
+    /**
      * Paths to handle
      */
     private static final String PATH_ROOT = "/";
     private static final String PATH_METADATA = "/metadata";
+    private static final String HEALTH_METADATA = "/health";
 
     /**
      * Port number
@@ -56,6 +63,10 @@ public class PettHttpServer implements Runnable {
      * Defines the route for the root page at /
      */
     private static Route rootPage = (Request request, Response response) -> "Welcome to PETT!";
+
+    /**
+     * Defines the route for the metadata page at /metadata
+     */
     private static Route metaDataPage = (Request request, Response response) -> {
         response.type("application/json");
 
@@ -74,6 +85,20 @@ public class PettHttpServer implements Runnable {
     };
 
     /**
+     * Defines the route for the health page at /health
+     */
+    private static Route healthPage = (Request request, Response response) -> {
+        response.type("application/health+json");
+
+        Gson gson = new Gson();
+        Map<String, Object> healthRoot = new HashMap<>();
+
+        healthRoot.put(HEALTH_STATUS_ATTR, ServerHealth.getCurrentHealth());
+
+        return gson.toJson(healthRoot);
+    };
+
+    /**
      * Runs the spark HTTP server
      * @note There is no need to explicitely call start to spark, this will
      * happen when any routes are defined
@@ -84,6 +109,7 @@ public class PettHttpServer implements Runnable {
         port(serverPort);
         get(PATH_ROOT, rootPage);
         get(PATH_METADATA, metaDataPage);
+        get(HEALTH_METADATA, healthPage);
         waitForStartSemaphore.release();
     }
 

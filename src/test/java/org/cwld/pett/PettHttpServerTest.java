@@ -75,10 +75,31 @@ public class PettHttpServerTest {
             // Verify we get an OK response first
             assertEquals(HttpURLConnection.HTTP_OK, conn.getResponseCode());
 
-            // Verify there is the expected hello message
+            // Verify there is the expected metadata response
             assertEquals(TestConstants.getExpectedMetadataResponse(), IOUtils.toString(conn.getInputStream()));
         } catch (IOException e) {
             fail ("Unexpected IO exception");
         }
     }
+
+    /**
+     * Tests a GET request to the health
+     */
+    @Test
+    public void testHealth() {
+        try {
+            URL getUrl = new URL(ROOT_URL + TestConstants.HEALTH_PATH);
+            HttpURLConnection conn = (HttpURLConnection)getUrl.openConnection();
+            conn.setRequestMethod("GET");
+
+            // Verify we get an OK response first
+            assertEquals(HttpURLConnection.HTTP_OK, conn.getResponseCode());
+
+            // Verify there is the expected health response
+            assertEquals(TestConstants.getExpectedHealthResponse(), IOUtils.toString(conn.getInputStream()));
+        } catch (IOException e) {
+            fail ("Unexpected IO exception");
+        }
+    }
+
 }
