@@ -100,7 +100,7 @@ public class PettHttpServer implements Runnable {
 
     /**
      * Runs the spark HTTP server
-     * @note There is no need to explicitely call start to spark, this will
+     * @apiNote There is no need to explicitely call start to spark, this will
      * happen when any routes are defined
      * This should only be called once, and will not complete until stop() is called
      * or an error that causes the server to go down. Consider running in a thread
@@ -115,7 +115,7 @@ public class PettHttpServer implements Runnable {
 
     /**
      * Waits for the server to be able to handle requests after calling run()
-     * @note This must only be called once after 'run' else it will block infinitely
+     * @apiNote This must only be called once after 'run' else it will block infinitely
      */
     public void waitForInit() {
         waitForStartSemaphore.acquireUninterruptibly();
