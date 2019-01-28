@@ -10,20 +10,24 @@ public final class MetadataInfo {
     /**
      * Metadata attribute names
      */
-    private final static String VERSION_ATTRIBUTE = "Application-Version";
-    private final static String COMMIT_HASH_ATTRIBUTE = "Commit-Hash";
+    public final static String VERSION_ATTRIBUTE = "Application-Version";
+    public final static String COMMIT_HASH_ATTRIBUTE = "Commit-Hash";
 
     /**
      * Description of the application
      */
-    private final static String APPLICATION_DESCRIPTION = "Pre-interview Technical Test";
+    public final static String APPLICATION_DESCRIPTION = "Pre-interview Technical Test";
 
     /**
      * Retrieves the version information built into the manifest
      * @return The version string for this build
      */
     public static final String getVersion() {
-        return Manifests.read(VERSION_ATTRIBUTE);
+        try {
+            return Manifests.read(VERSION_ATTRIBUTE);
+        } catch (IllegalArgumentException e) {
+            return "INVALID_VERSION";
+        }
     }
 
     /**
@@ -39,6 +43,10 @@ public final class MetadataInfo {
      * @return A string containing the git commit hash that this application was built from
      */
     public static final String getCommitHash() {
-        return Manifests.read(COMMIT_HASH_ATTRIBUTE);
+        try {
+            return Manifests.read(COMMIT_HASH_ATTRIBUTE);
+        } catch (IllegalArgumentException e) {
+            return "INVALID_COMMIT_HASH";
+        }
     }
 }
