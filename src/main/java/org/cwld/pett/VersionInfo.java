@@ -1,10 +1,17 @@
 package org.cwld.pett;
 
-    import com.jcabi.manifests.Manifests;
+import com.jcabi.manifests.Manifests;
 
-public class VersionInfo {
+/**
+ * Class to hold static version information for the application
+ */
+public final class VersionInfo {
 
-    public String getVersion() {
+    /**
+     * Retrieves the version information built into the manifest
+     * @return  The version string for this build
+     */
+    public static final String getVersion() {
         return Manifests.read("Application-Version");
     }
 }
