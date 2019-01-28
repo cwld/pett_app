@@ -39,6 +39,8 @@ dependencies {
     compile 'com.sparkjava:spark-core:2.7.2'
     // Gson is used for json -> string conversion
     compile 'com.google.code.gson:gson:2.8.5'
+    // Apache commons CLI is used to parse arguments to run the application
+    compile 'commons-cli:commons-cli:1.3.1'
 }
 
 jar {

@@ -10,13 +10,13 @@ public final class MetadataInfo {
     /**
      * Metadata attribute names
      */
-    public final static String VERSION_ATTRIBUTE = "Application-Version";
-    public final static String COMMIT_HASH_ATTRIBUTE = "Commit-Hash";
+    private final static String VERSION_ATTRIBUTE = "Application-Version";
+    private final static String COMMIT_HASH_ATTRIBUTE = "Commit-Hash";
 
     /**
      * Description of the application
      */
-    public final static String APPLICATION_DESCRIPTION = "Pre-interview Technical Test";
+    private final static String APPLICATION_DESCRIPTION = "Pre-interview Technical Test";
 
     /**
      * Retrieves the version information built into the manifest
