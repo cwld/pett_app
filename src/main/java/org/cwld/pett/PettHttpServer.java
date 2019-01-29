@@ -28,7 +28,7 @@ public class PettHttpServer implements Runnable {
     /**
      * Attribute strings for the metadata handler
      */
-    private static final String METADATA_ROOT_ATTR = "PEET";
+    private static final String METADATA_ROOT_ATTR = "PETT";
     private static final String METADATA_VERSION_ATTR = "version";
     private static final String METADATA_DESC_ATTR = "description";
     private static final String METADATA_COMMIT_ATTR = "commit";

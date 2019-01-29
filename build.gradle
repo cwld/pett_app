@@ -4,7 +4,7 @@ plugins {
 
 group 'org.cwld'
 // Use build number from jenkins
-version "1.0.0-$System.env.BUILD_NUMBER"
+version "1.0.1-$System.env.BUILD_NUMBER"
 
 // Retrieves the git commit hash from the local repository
 // Adapted from https://stackoverflow.com/questions/28498688/gradle-script-to-autoversion-and-include-the-commit-hash-in-android

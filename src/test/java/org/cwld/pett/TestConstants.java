@@ -32,7 +32,7 @@ public class TestConstants {
      */
     public static final String ROOT_HELLO_TEXT = "Welcome to PETT!";
     public static final String METADATA_PATH = "metadata";
-    public static final String METADATA_ROOT_ATTR = "PEET";
+    public static final String METADATA_ROOT_ATTR = "PETT";
     public static final String METADATA_VERSION_ATTR = "version";
     public static final String METADATA_DESC_ATTR = "description";
     public static final String METADATA_COMMIT_ATTR = "commit";
