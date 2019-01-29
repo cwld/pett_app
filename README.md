@@ -46,11 +46,11 @@ docker run --rm -p <port>:<port> -v $(pwd):/appdir -w /appdir -u ${UID}:${GID} c
 The application HTTP API can be easily used with most web browsers or you can programmatically access with your favourite HTTP request library. The API provides 3 functions: A simple root endpoint returning a welcome message; a metadata endpoint returning build info and descriptive data about the application; and a health endpoint returning a health status of the current application.
 The requests are simple HTTP GET requests to the endpoint paths, which are detailed below:
 * /
-** Returns a simple plain text message of 'Welcome to PETT!'
+  - Returns a simple plain text message of 'Welcome to PETT!'
 * /metadata
-** Returns JSON with the description of the build, the commit hash that the build was built from, and the version number
+  - Returns JSON with the description of the build, the commit hash that the build was built from, and the version number
 * /health
-** Returns Health JSON with a status describing the health. If the health status is not 'PASS', consider increasing the memory available to the JVM
+  - Returns Health JSON with a status describing the health. If the health status is not 'PASS', consider increasing the memory available to the JVM
 
 If you are running the server locally on the default port, you can just follow the links below in your web browser:
 * http://127.0.0.1:4567/
