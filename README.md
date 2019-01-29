@@ -25,6 +25,7 @@ To run any of these tasks within the docker container (requires docker to be ins
 docker run --rm -v $(pwd):/workdir -w /workdir -u ${UID}:${GID} clml/pett-build bash -c "./gradlew <action>"
 ```
 If you have a jenkins installation, you can build the application using the Jenkinsfile located in the root of the repository, which uses the docker container to build but has no other dependencies otherwise.
+Note, the build version uses the environment variable \'BUILD_NUMBER\' as the build number in the version, otherwise the build number will be \'null\'. This is defined by the jenkins environment, or you will have to define this in your environment yourself.
 
 ## Usage
 
